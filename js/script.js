@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             // Primero enviamos los datos al servidor
-            const response = await fetch('http://localhost:3000/api/submit', {
+            const response = await fetch('https://lpirrasonablesdatos.onrender.com/api/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 sessionStorage.setItem('userData', JSON.stringify(formData));
                 
                 // Redirigir a la página de confirmación
-                window.location.href = 'http://localhost:3000/confirmacion';
+                window.location.href = 'https://chekokk.github.io/LPIrrasonablesDatos/confirmacion.html';
             } else {
                 throw new Error('Error en el servidor');
             }
