@@ -1,0 +1,734 @@
+/* Variables globales */
+:root {
+    --primary-color: #2563eb;
+    --primary-light: #60a5fa;
+    --primary-dark: #1e40af;
+    --secondary-color: #7c3aed;
+    --secondary-light: #a78bfa;
+    --accent-color: #f59e0b;
+    --text-color: #1f2937;
+    --text-light: #6b7280;
+    --background-color: #ffffff;
+    --background-alt: #f8fafc;
+    --success-color: #10b981;
+    --error-color: #ef4444;
+    --surface-color: #ffffff;
+    --border-color: #e5e7eb;
+    
+    /* Sombras */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    
+    /* Gradientes */
+    --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    
+    /* Transiciones */
+    --transition-fast: all 0.2s ease;
+    --transition-normal: all 0.3s ease;
+    --transition-slow: all 0.5s ease;
+}
+
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Estilos del encabezado sticky */
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    padding: 5px 0;
+}
+
+#logo-img {
+    max-height: 50px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--text-color);
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        flex-direction: column;
+        padding: 1rem 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+
+/* Ajuste para el contenido debajo del header sticky */
+body {
+    padding-top: 80px;
+}
+
+/* Estilos de las secciones */
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--text-color);
+}
+
+/* Estilos de la sección de servicios */
+.services-section {
+    padding: 5rem 0;
+    background-color: #f9f9f9;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Ajustes responsivos para servicios */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .service-card {
+        padding: 1.5rem;
+    }
+    
+    .service-card i {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.service-card {
+    background: var(--surface-color);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    z-index: 1;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    opacity: 0;
+    z-index: -1;
+    transition: var(--transition-normal);
+}
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-xl);
+    border-color: transparent;
+}
+
+.service-card:hover::before {
+    opacity: 0.05;
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    transition: var(--transition-normal);
+}
+
+.service-card:hover i {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+/* Estilos de la sección sobre nosotros */
+.about-section {
+    padding: 5rem 0;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* Estilos de la sección hero */
+.hero {
+    position: relative;
+    height: 90vh;
+    background-color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(37, 99, 235, 0.03) 0%, rgba(124, 58, 237, 0.03) 100%);
+    z-index: 1;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.hero-text p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+.hero-text::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 2rem auto 0;
+    border-radius: 2px;
+    opacity: 0.8;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilos del formulario */
+.contact-form {
+    padding: 4rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-secondary);
+    opacity: 0.05;
+    z-index: -1;
+}
+
+.contact-form h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.contact-form h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 3px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Estilos del selector de teléfono */
+.iti {
+    width: 100%;
+    margin-bottom: 0;
+    display: block;
+}
+
+.tel-input-container {
+    position: relative;
+    width: 100%;
+}
+
+.phone-input {
+    width: 100% !important;
+    height: 45px;
+    padding-left: 90px !important;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Contenedor de la bandera - estilo unificado */
+.iti__flag-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 1px;
+    background-color: transparent;
+}
+
+.iti__selected-flag {
+    padding: 0 6px 0 8px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    border-right: 1px solid #ddd;
+}
+
+/* Ocultar la primera flecha del dropdown */
+.iti__arrow {
+    display: none;
+}
+
+/* Mostrar solo la flecha después del código de país */
+.iti--separate-dial-code .iti__arrow {
+    display: inline-block;
+    margin-left: 6px;
+}
+
+.iti__selected-flag:hover {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.iti__selected-dial-code {
+    color: #333;
+    font-size: 14px;
+    margin-left: 8px;
+    font-weight: 500;
+}
+
+/* Estilos del dropdown de países */
+.iti__country-list {
+    margin: 0;
+    padding: 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.iti__country {
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.iti__country:hover {
+    background-color: #f5f5f5;
+}
+
+.iti__flag {
+    margin: 0;
+}
+
+/* Eliminar estilos duplicados y conflictivos */
+.iti--separate-dial-code .iti__selected-flag,
+.iti__flag-container,
+.iti__selected-flag {
+    border: none;
+    width: auto;
+    min-width: auto;
+}
+
+/* Ajuste del scroll del dropdown */
+.iti__country-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.iti__country-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.iti__country-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.iti__country-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Mensajes de validación */
+#valid-msg, #error-msg {
+    display: none !important;
+}
+
+#valid-msg {
+    color: #00a854;
+    background-color: #f6ffed;
+}
+
+#error-msg {
+    color: #ff4d4f;
+    background-color: #fff2f0;
+}
+
+/* Estilos para el selector seleccionado */
+.iti__selected-flag {
+    padding: 0 12px;
+    background-color: transparent !important;
+    border-right: 1px solid #ddd;
+    transition: background-color 0.2s ease;
+}
+
+.iti__selected-flag:hover {
+    background-color: #f5f5f5 !important;
+}
+
+/* Ajuste del espaciado del dropdown */
+.iti--separate-dial-code .iti__selected-flag {
+    border-radius: 4px 0 0 4px;
+    width: 90px;
+}
+
+/* Ajustes adicionales para el contenedor del teléfono */
+.iti--separate-dial-code {
+    display: flex !important;
+}
+
+.iti--separate-dial-code .iti__selected-dial-code {
+    padding-left: 5px;
+}
+
+/* Estilos para el placeholder */
+.iti input::placeholder {
+    color: #999;
+}
+
+/* Ajuste del ancho del contenedor de la bandera */
+.iti__flag-container {
+    width: 90px;
+    z-index: 2;
+}
+
+/* Asegurarse que el input ocupe todo el espacio restante */
+.phone-input {
+    flex: 1;
+}
+
+input {
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    transform: translateY(-2px);
+}
+
+.submit-btn {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+    transition: var(--transition-normal);
+}
+
+.submit-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.submit-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Estilos del pie de página */
+footer {
+    background: linear-gradient(to bottom, var(--text-color), #111827);
+    color: white;
+    padding: 4rem 0 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, 
+        transparent, 
+        rgba(255,255,255,0.2), 
+        transparent
+    );
+}
+
+.footer-content {
+    position: relative;
+    z-index: 1;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.footer-section {
+    margin-bottom: 1.5rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+}
+
+.social-links a {
+    color: rgba(255, 255, 255, 0.8);
+    margin-right: 1.5rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: var(--transition-normal);
+    display: inline-block;
+}
+
+.social-links a:hover {
+    color: white;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .hero {
+        height: 300px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-section {
+        margin-bottom: 2rem;
+    }
+}

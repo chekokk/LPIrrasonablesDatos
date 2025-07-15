@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+    <!-- Enlaces a archivos CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Intl-tel-input CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- AOS - Animate On Scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/LogoTHMB.png">
+</head>
+<body>
+    <!-- Cabecera de la página -->
+    <header class="sticky-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <!-- Espacio para logo -->
+                <img src="images/Logo.png" alt="Logo de la empresa" id="logo-img">
+            </div>
+            <button class="menu-toggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección principal con banner -->
+    <section id="inicio" class="hero">
+        <!-- Espacio para imagen de banner -->
+        <div class="hero-image"></div>
+        <div class="hero-text">
+            <h1>Bienvenido a Nuestra Página</h1>
+            <p>Descubre nuestros servicios y productos excepcionales</p>
+        </div>
+    </section>
+
+    <!-- Sección de Servicios -->
+    <section id="servicios" class="services-section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3>Consultoría</h3>
+                    <p>Asesoramiento experto para optimizar tus procesos y estrategias empresariales.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Desarrollo</h3>
+                    <p>Soluciones tecnológicas a medida para impulsar tu negocio al siguiente nivel.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Capacitación</h3>
+                    <p>Programas de formación especializados para ti y tu equipo de trabajo.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Seguridad</h3>
+                    <p>Protección integral para tus activos digitales y datos empresariales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Nosotros -->
+    <section id="nosotros" class="about-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Sobre Nosotros</h2>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h3 class="about-subtitle">Innovación y Excelencia</h3>
+                    <p>Somos una empresa comprometida con la excelencia y la innovación. Nuestro objetivo es proporcionar soluciones de alta calidad a nuestros clientes.</p>
+                    <p>Con años de experiencia en el mercado, nos hemos posicionado como líderes en nuestro sector.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Calidad Garantizada</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <span>Soporte 24/7</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-star"></i>
+                            <span>Servicio Premium</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <div class="image-wrapper">
+                        <img src="images/SobreNuestraEmpresa.jpg" alt="Sobre nuestra empresa">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="contact-section">
+    <section class="contact-form">
+        <div class="container">
+            <h2>Formulario de Contacto</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <div class="error-message" id="nombreError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Número de Teléfono:</label>
+                    <div class="tel-input-container">
+                        <input type="tel" id="telefono" name="telefono" class="phone-input" placeholder="Ingresa tu número" required>
+                        <span id="valid-msg" class="hide"><i class="fas fa-check-circle"></i></span>
+                        <span id="error-msg" class="hide"><i class="fas fa-exclamation-circle"></i></span>
+                        <div class="error-message" id="telefonoError"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Enviar
+                </button>
+            </form>
+            
+            <div class="success-message" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <h3>¡Gracias por contactarnos!</h3>
+                <p>Hemos recibido tu información. Te hemos enviado un correo de confirmación.</p>
+                <div class="loading-pdf">
+                    <p><i class="fas fa-spinner fa-spin"></i> Generando PDF...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-phone"></i> +1234567890</p>
+                    <p><i class="fas fa-envelope"></i> contacto@tuempresa.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tu Empresa. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Intl-tel-input JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"></script>
+    <!-- AOS - Animate On Scroll -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- GSAP para animaciones avanzadas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <!-- ScrollTrigger para animaciones al hacer scroll -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script>
+    <!-- Script principal -->
+    <script src="js/script.js"></script>
+    <script>
+        // Inicializar AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
+</body>
+</html>

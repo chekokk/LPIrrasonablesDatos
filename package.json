@@ -1,0 +1,20 @@
+{
+  "name": "formulario-contacto",
+  "version": "1.0.0",
+  "description": "Formulario de contacto con envío de correos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.10.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "nodemailer": "^6.10.1",
+    "pdfkit": "^0.17.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
