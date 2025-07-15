@@ -1,14 +1,12 @@
 // Manejo del menú móvil
-const BACKEND_URL = 'https://TU-BACKEND-DOMINIO'; // Reemplaza con tu URL de backend desplegado
-
 document.addEventListener('DOMContentLoaded', function() {
     // Inicializar el input de teléfono
     const phoneInputField = document.querySelector("#telefono");
     const phoneInput = window.intlTelInput(phoneInputField, {
         preferredCountries: ["mx"],
         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js",
-        separateDialCode: true,
-        initialCountry: "mx"
+        // Desactivar la validación en tiempo real
+        validationScript: false
     });
 
     const form = document.getElementById('contactForm');
@@ -55,9 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Manejar el envío del formulario
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
+        console.log('Formulario enviado');
 
         if (!validateForm()) {
-            return;
+            console.log('Validación fallida');
+            return false;
         }
 
         const submitBtn = document.getElementById('submitBtn');
@@ -71,24 +71,31 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         try {
-            // Enviar datos al backend remoto
-            const response = await fetch(`${BACKEND_URL}/api/submit`, {
+            // Primero enviamos los datos al servidor
+            const response = await fetch('http://localhost:3000/api/submit', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify(formData)
             });
 
             const data = await response.json();
 
             if (data.success) {
-                // Redirigir a la página de confirmación estática
-                window.location.href = './confirmacion.html';
+                console.log('Respuesta exitosa del servidor');
+                
+                // Guardar datos en sessionStorage antes de redirigir
+                sessionStorage.setItem('userData', JSON.stringify(formData));
+                
+                // Redirigir a la página de confirmación
+                window.location.href = 'http://localhost:3000/confirmacion';
             } else {
-                throw new Error('Error del servidor');
+                throw new Error('Error en el servidor');
             }
-        } catch (err) {
-            console.error('Error:', err);
-            alert('Ha ocurrido un error. Por favor, intenta nuevamente.');
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Ha ocurrido un error. Por favor, intente nuevamente.');
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar';
         }
@@ -105,18 +112,94 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Toggle del menú móvil
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
-    menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+    
+    // Toggle del menú móvil
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
 
     // Cerrar menú al hacer click en un enlace
-    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
 
-    // Scroll suave
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }));
+    // Scroll suave para los enlaces de navegación
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
 });
+
+// Inicialización del input de teléfono
+let phoneInput;
+document.addEventListener('DOMContentLoaded', function() {
+    const phoneInputField = document.querySelector("#telefono");
+    phoneInput = window.intlTelInput(phoneInputField, {
+        preferredCountries: ["mx"],
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js",
+        separateDialCode: true,
+        initialCountry: "mx",
+        formatOnDisplay: false,
+        autoPlaceholder: "off",
+        nationalMode: true,
+        autoFormat: false
+    });
+
+    const errorMsg = document.querySelector("#error-msg");
+    const validMsg = document.querySelector("#valid-msg");
+
+    // Validación y formateo en tiempo real del número de teléfono
+    phoneInputField.addEventListener('input', (e) => {
+        // Eliminar cualquier carácter que no sea número
+        let value = e.target.value.replace(/\D/g, '');
+        
+        // Limitar a 10 dígitos
+        value = value.substring(0, 10);
+        
+        // Aplicar formato XXX-XXX-XXXX
+        if (value.length > 0) {
+            if (value.length <= 3) {
+                value = value;
+            } else if (value.length <= 6) {
+                value = value.slice(0, 3) + '-' + value.slice(3);
+            } else {
+                value = value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6);
+            }
+        }
+        
+        // Actualizar el valor del campo
+        e.target.value = value;
+        
+        // Validar el número
+        const isValid = phoneInput.isValidNumber();
+        if (isValid) {
+            validMsg.classList.remove("hide");
+            errorMsg.classList.add("hide");
+        } else {
+            validMsg.classList.add("hide");
+            errorMsg.classList.remove("hide");
+            errorMsg.innerHTML = "Número inválido";
+        }
+    });
+    
+    // Prevenir la entrada de caracteres no numéricos
+    phoneInputField.addEventListener('keypress', (e) => {
+        if (!/^\d$/.test(e.key) && e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') {
+            e.preventDefault();
+        }
+    });
+});
+
+
