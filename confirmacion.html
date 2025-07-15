@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro Exitoso</title>
-    <link rel="stylesheet" href="css/confirmation.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./css/confirmation.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -16,34 +16,24 @@
         <div class="confirmation-message">
             <h1>¡Registro Exitoso!</h1>
             <p>Gracias por registrarte. Pronto recibirás un correo de confirmación.</p>
-            <p>Tu comprobante "Prueba" se está descargando...</p>
+            <p>Tu comprobante se está descargando...</p>
         </div>
-        <a href="/" class="return-button">
+        <a href="./index.html" class="return-button">
             <i class="fas fa-home"></i> Volver a la Página Principal
         </a>
     </div>
 
     <script>
-        // Función para descargar el PDF automáticamente
-        window.onload = function() {
-            setTimeout(function() {
-                fetch('http://localhost:3000/download-pdf')
-                    .then(response => response.blob())
-                    .then(blob => {
-                        const url = window.URL.createObjectURL(blob);
-                        const link = document.createElement('a');
-                        link.href = url;
-                        link.download = 'confirmacion.pdf';
-                        link.style.display = 'none';
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                        window.URL.revokeObjectURL(url);
-                    })
-                    .catch(error => {
-                        console.error('Error al descargar el PDF:', error);
-                        alert('Hubo un error al descargar el PDF. Por favor, intente nuevamente.');
-                    });
+        // Descarga el PDF directamente desde el repositorio
+        window.onload = function () {
+            setTimeout(function () {
+                const link = document.createElement('a');
+                link.href = './public/confirmacion.pdf';  // Asegúrate que el PDF esté en esta ruta
+                link.download = 'confirmacion.pdf';
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             }, 1000);
         };
     </script>
