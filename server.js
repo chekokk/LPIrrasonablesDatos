@@ -1,7 +1,6 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
-const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
@@ -101,72 +100,14 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Función para generar PDF
-function generatePDF(data) {
-    return new Promise((resolve, reject) => {
-        const doc = new PDFDocument();
-        const pdfPath = path.join(__dirname, 'public', 'confirmacion.pdf');
-            
-        // Asegurarnos de que el directorio public existe
-        if (!fs.existsSync(path.join(__dirname, 'public'))) {
-            fs.mkdirSync(path.join(__dirname, 'public'), { recursive: true });
-        }
-            
-        const writeStream = fs.createWriteStream(pdfPath);
-
-        doc.pipe(writeStream);
-
-        // Diseño del PDF
-        doc.font('Helvetica-Bold')
-           .fontSize(24)
-           .text('Confirmación de Registro', { align: 'center' })
-           .moveDown();
-
-        doc.fontSize(14)
-           .text('Información del Registro:', { underline: true })
-           .moveDown();
-
-        doc.font('Helvetica')
-           .fontSize(12)
-           .text(`Nombre: ${data.nombre}`)
-           .text(`Teléfono: ${data.telefono}`)
-           .text(`Email: ${data.email}`)
-           .text(`Fecha de Registro: ${new Date().toLocaleString()}`)
-           .moveDown();
-
-        doc.fontSize(12)
-           .text('Gracias por registrarte en nuestro sistema. Te contactaremos pronto.')
-           .moveDown(2);
-
-        doc.font('Helvetica-Bold')
-           .fontSize(10)
-           .text('Este es un documento oficial de confirmación.', { align: 'center' });
-
-        doc.end();
-
-        writeStream.on('finish', () => {
-            resolve(pdfPath);
-        });
-
-        writeStream.on('error', reject);
-    });
-}
-
-// Ruta para descargar el PDF
+// Ruta para descargar el PDF estático
 app.get('/download-pdf', (req, res) => {
-    const pdfPath = path.join(__dirname, 'public', 'confirmacion.pdf');
-    console.log('Intentando descargar PDF desde:', pdfPath);
-    
-    if (fs.existsSync(pdfPath)) {
-        console.log('PDF encontrado, enviando archivo...');
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', 'attachment; filename=confirmacion.pdf');
-        const fileStream = fs.createReadStream(pdfPath);
-        fileStream.pipe(res);
-    } else {
-        console.log('PDF no encontrado');
-        res.status(404).send('PDF no encontrado');
-    }
+    res.download(path.join(__dirname, 'public', 'confirmacion.pdf'), 'confirmacion.pdf', (err) => {
+        if (err) {
+            console.log('Error al descargar el PDF:', err);
+            res.status(404).send('PDF no encontrado');
+        }
+    });
 });
 
 // Ruta para el envío del formulario
@@ -179,17 +120,6 @@ app.post('/api/submit', async (req, res) => {
         console.log('Creando elemento en Monday.com...');
         await createMondayItem(req.body);
         console.log('Elemento creado en Monday.com exitosamente');
-
-        // Asegurarse de que existe el directorio public
-        const publicDir = path.join(__dirname, 'public');
-        if (!fs.existsSync(publicDir)) {
-            fs.mkdirSync(publicDir, { recursive: true });
-        }
-
-        // Generar el PDF
-        console.log('Generando PDF...');
-        await generatePDF(req.body);
-        console.log('PDF generado exitosamente');
 
         // Enviar correo al usuario
         console.log('Enviando correo...');

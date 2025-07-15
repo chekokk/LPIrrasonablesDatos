@@ -16,9 +16,9 @@ doc.pipe(output);
 
 // Añadir contenido al PDF
 doc.fontSize(30)
-   .text('Prueba', {
+   .text('prueba', {
        align: 'center',
-       valign: 'center'
+       y: doc.page.height / 2 - 15
    });
 
 // Finalizar el PDF
