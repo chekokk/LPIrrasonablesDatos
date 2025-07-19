@@ -3,126 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Contacto</title>
-    <!-- Enlaces a archivos CSS -->
+    <title>Ellas Impactan</title>
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Font Awesome para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Intl-tel-input CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <!-- AOS - Animate On Scroll -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="images/LogoTHMB.png">
+    <link rel="icon" type="image/png" href="images/ThumbnailIrrazonables.png">
 </head>
 <body>
-    <!-- Cabecera de la página -->
-    <header class="sticky-header">
+    <header class="main-header">
         <nav class="nav-container">
             <div class="logo">
-                <!-- Espacio para logo -->
-                <img src="images/Logo.png" alt="Logo de la empresa" id="logo-img">
+                <a href="#inicio">
+                    <img src="images/Logo.png" alt="Ellas Impactan Logo" class="logo-img">
+                </a>
             </div>
-            <button class="menu-toggle" aria-label="Abrir menú">
-                <i class="fas fa-bars"></i>
+            <button class="menu-toggle" aria-label="Menú">
+                <span class="hamburger"></span>
             </button>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
+            <div class="nav-buttons">
+                <a href="#inicio" class="nav-btn active">Inicio</a>
+                <a href="#reporte" class="nav-btn">Reporte</a>
+                <a href="#testimonios" class="nav-btn">Testimonios</a>
+                <a href="#mapa" class="nav-btn">Mapa</a>
+                <a href="#metodologia" class="nav-btn">Metodología</a>
+                <a href="#sobre" class="nav-btn">Sobre</a>
+                <a href="#investigacion" class="nav-btn">Investigación</a>
+                <a href="#faq" class="nav-btn">FAQs</a>
+                <a href="#colaboradores" class="nav-btn">Colaboradores</a>
+            </div>
         </nav>
     </header>
 
-    <!-- Sección principal con banner -->
-    <section id="inicio" class="hero">
-        <!-- Espacio para imagen de banner -->
-        <div class="hero-image"></div>
-        <div class="hero-text">
-            <h1>Bienvenido a Nuestra Página</h1>
-            <p>Descubre nuestros servicios y productos excepcionales</p>
-        </div>
-    </section>
-
-    <!-- Sección de Servicios -->
-    <section id="servicios" class="services-section">
-        <div class="container">
-            <h2 class="section-title">Nuestros Servicios</h2>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
-                        <i class="fas fa-cog"></i>
-                    </div>
-                    <h3>Consultoría</h3>
-                    <p>Asesoramiento experto para optimizar tus procesos y estrategias empresariales.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Desarrollo</h3>
-                    <p>Soluciones tecnológicas a medida para impulsar tu negocio al siguiente nivel.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Capacitación</h3>
-                    <p>Programas de formación especializados para ti y tu equipo de trabajo.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Seguridad</h3>
-                    <p>Protección integral para tus activos digitales y datos empresariales.</p>
-                </div>
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="hero-section">
+            <div class="hero-content">
+                <h1>Ellas Impactan</h1>
+                <p class="subtitle">Mujeres Líderes en soluciones y cambios energéticos</p>
+                <div class="partners">
+                    <img src="images/BitacoraSocial.png" alt="iluméxico">
+                    <img src="images/KesselLogo.png" alt="kessel">
             </div>
         </div>
     </section>
 
-    <!-- Sección Nosotros -->
-    <section id="nosotros" class="about-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Sobre Nosotros</h2>
-            <div class="about-content">
-                <div class="about-text" data-aos="fade-right">
-                    <h3 class="about-subtitle">Innovación y Excelencia</h3>
-                    <p>Somos una empresa comprometida con la excelencia y la innovación. Nuestro objetivo es proporcionar soluciones de alta calidad a nuestros clientes.</p>
-                    <p>Con años de experiencia en el mercado, nos hemos posicionado como líderes en nuestro sector.</p>
-                    <div class="about-features">
-                        <div class="feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Calidad Garantizada</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-clock"></i>
-                            <span>Soporte 24/7</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-star"></i>
-                            <span>Servicio Premium</span>
-                        </div>
-                    </div>
+        <!-- Sección de Reporte y Formulario -->
+        <section id="reporte" class="report-section">
+            <h2 class="section-title">Reporte Ellas Impactan</h2>
+            <div class="report-container">
+                <div class="report-content">
+                    <p>El futuro no siempre empieza con innovación y tecnología, sino con la forma en que las mujeres deciden cuándo, cómo y para qué impactan.</p>
+                    <blockquote>
+                        "La energía reconfigura la organización del tiempo, la seguridad, la autonomía práctica y los vínculos con otras mujeres."
+                    </blockquote>
                 </div>
-                <div class="about-image" data-aos="fade-left">
-                    <div class="image-wrapper">
-                        <img src="images/SobreNuestraEmpresa.jpg" alt="Sobre nuestra empresa">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Contacto -->
-    <section id="contacto" class="contact-section">
-    <section class="contact-form">
-        <div class="container">
-            <h2>Formulario de Contacto</h2>
+                <div class="report-form">
+                    <h3>Formulario de Contacto</h3>
             <form id="contactForm">
                 <div class="form-group">
                     <label for="nombre">Nombre Completo:</label>
@@ -133,7 +70,7 @@
                 <div class="form-group">
                     <label for="telefono">Número de Teléfono:</label>
                     <div class="tel-input-container">
-                        <input type="tel" id="telefono" name="telefono" class="phone-input" placeholder="Ingresa tu número" required>
+                        <input type="tel" id="telefono" name="telefono" class="phone-input" placeholder="111-111-1111" required maxlength="12" inputmode="numeric" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
                         <span id="valid-msg" class="hide"><i class="fas fa-check-circle"></i></span>
                         <span id="error-msg" class="hide"><i class="fas fa-exclamation-circle"></i></span>
                         <div class="error-message" id="telefonoError"></div>
@@ -147,7 +84,7 @@
                 </div>
 
                 <button type="submit" class="submit-btn" id="submitBtn">
-                    <i class="fas fa-paper-plane"></i> Enviar
+                    <i class="fas fa-file-pdf"></i> Descargar Reporte
                 </button>
             </form>
             
@@ -157,53 +94,226 @@
                 <p>Hemos recibido tu información. Te hemos enviado un correo de confirmación.</p>
                 <div class="loading-pdf">
                     <p><i class="fas fa-spinner fa-spin"></i> Generando PDF...</p>
+                        </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pie de página -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Contacto</h3>
-                    <p><i class="fas fa-phone"></i> +1234567890</p>
-                    <p><i class="fas fa-envelope"></i> contacto@tuempresa.com</p>
+        <!-- Sección de Testimonios -->
+        <section id="testimonios" class="testimonials-section">
+            <h2 class="section-title">Testimonios</h2>
+            <div class="testimonials-container">
+                <button class="testimonial-nav prev" aria-label="Testimonio anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="testimonials-carousel">
+                    <div class="testimonials-track">
+                        <!-- Testimonio 1 -->
+                        <div class="testimonial-card" style="background-color: #A5A6D9;">
+                            <p class="testimonial-text">"En mi casa ya es como entre pares, pero soy el pilar de confianza para mis padres y hermana."</p>
+                            <p class="testimonial-author">— Nancy</p>
+                        </div>
+
+                        <!-- Testimonio 2 -->
+                        <div class="testimonial-card" style="background-color: #F85C37;">
+                            <p class="testimonial-text">"Mi hijo no está. Se fue a trabajar. Pero aquí estoy yo con mi nuera y mis nietos. Si no hay dinero, yo veo qué vendemos. A veces hago tamales, a veces camarón. Si no se vende, se guarda, y al día siguiente pruebo con otra cosa."</p>
+                            <p class="testimonial-author">— Marisepa</p>
+                        </div>
+
+                        <!-- Testimonio 3 -->
+                        <div class="testimonial-card" style="background-color: #A4D65E;">
+                            <p class="testimonial-text">"Yo me encargo de muchas cosas, cuando no hay agua en el pozo, tengo que llamar a la pipa. Si no, ¿quién lo hace?"</p>
+                            <p class="testimonial-author">— Guadalupe</p>
+                        </div>
+
+                        <!-- Testimonio 4 -->
+                        <div class="testimonial-card" style="background-color: #FFB347;">
+                            <p class="testimonial-text">"La energía solar me dio independencia. Ahora puedo trabajar hasta tarde en mi negocio de costura sin preocuparme por los cortes de luz."</p>
+                            <p class="testimonial-author">— Patricia</p>
+                        </div>
+
+                        <!-- Testimonio 5 -->
+                        <div class="testimonial-card" style="background-color: #98D8D8;">
+                            <p class="testimonial-text">"Gracias a la capacitación técnica, ahora soy la primera mujer en mi comunidad que instala paneles solares. Las demás mujeres me buscan para pedirme consejos."</p>
+                            <p class="testimonial-author">— Rosa</p>
+                        </div>
+
+                        <!-- Testimonio 6 -->
+                        <div class="testimonial-card" style="background-color: #FF9ECD;">
+                            <p class="testimonial-text">"Con el acceso a energía limpia, mis hijas pueden estudiar por la noche. Estoy segura que tendrán más oportunidades que las que yo tuve."</p>
+                            <p class="testimonial-author">— Carmen</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Síguenos</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                <button class="testimonial-nav next" aria-label="Siguiente testimonio">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="testimonial-dots"></div>
+            </div>
+        </section>
+
+        <!-- Sección del Mapa -->
+        <section id="mapa" class="map-section">
+            <h2 class="section-title">Mapa de México con datos de los lugares de entrevista</h2>
+            <div class="map-container">
+                <div class="interactive-map">
+                    <img src="images/mexico-map.png" alt="Mapa de México" class="mexico-map">
+                    
+                    <!-- Botones de datos -->
+                    <div class="data-buttons">
+                        <button class="data-btn chihuahua" data-state="chihuahua">
+                            <i class="fas fa-chevron-right"></i>
+                            Datos de Chihuahua
+                        </button>
+                        
+                        <button class="data-btn naucalpan" data-state="naucalpan">
+                            <i class="fas fa-chevron-right"></i>
+                            Datos de Naucalpan
+                        </button>
+                        
+                        <button class="data-btn oaxaca" data-state="oaxaca">
+                            <i class="fas fa-chevron-right"></i>
+                            Datos de Oaxaca
+                        </button>
+                        
+                        <button class="data-btn yucatan" data-state="yucatan">
+                            <i class="fas fa-chevron-right"></i>
+                            Datos de Yucatán
+                        </button>
+                    </div>
+
+                    <!-- Panel de información -->
+                    <div class="state-info-panel" id="stateInfoPanel">
+                        <div class="info-header">
+                            <h3 id="stateTitle"></h3>
+                            <button class="close-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="info-content">
+                            <!-- El contenido se llenará dinámicamente con JavaScript -->
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Tu Empresa. Todos los derechos reservados.</p>
+        </section>
+
+        <!-- Sección de Metodología -->
+        <section id="metodologia" class="methodology">
+            <div class="methodology-container">
+                <h2 class="section-title">Metodología</h2>
+                <div class="methodology-grid">
+                    <div class="methodology-card">
+                        <h3>Tipo de estudio</h3>
+                        <p>La investigación se basó en una metodología etnográfica comparativa, centrada en la observación participante, las conversaciones semiestructuradas en profundidad y el análisis relacional del entorno doméstico local. Se investigó en las cuatro regiones distintas del país marcadas en el mapa anterior.</p>
+                    </div>
+                    <div class="methodology-card">
+                        <h3>Muestreo</h3>
+                        <p>Se buscó conocer el uso de la tecnología que sumaron a sus vidas y comprender cómo se inserta en el orden práctico, simbólico y afectivo de los hogares. Cada zona contó con un diario de campo propio, que permitió registrar tensiones, aprendizajes y matices culturales a nivel local.</p>
+                    </div>
+                    <div class="methodology-card">
+                        <h3>Técnicas usadas</h3>
+                        <p>En total se acumularon 1,040 horas de campo divididas en 40 ejercicios antropológicos, de los cuales se incluyen diarios de campo antropológico en cada una de las regiones, entrevistas individuales con usuarias de hasta 4 horas de duración y sesiones grupales que generaron más de 40 conversaciones semiestructuradas con familiares de las usuarias.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Sección Sobre Ellas Impactan -->
+    <section id="sobre" class="about-section">
+        <div class="about-container">
+            <div class="about-title">
+                <h2>Sobre<br>Ellas<br>Impactan</h2>
+            </div>
+            <div class="about-text">
+                <p>Esta investigación antropológica no concluye si el servicio funciona o no. El objetivo del análisis es ver cómo la tecnología y la energía se vuelven parte del tejido cotidiano (o no), cómo es adoptado, reparado, ignorado o sustituido.</p>
+                <p>Porque para muchas de estas mujeres y sus familias, lo técnico no significa progreso: significa utilidad. Lo que sirve, se queda; lo que no, se reemplaza o se omite.</p>
+                <span class="about-underline"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Detrás de la Investigación -->
+    <section id="investigacion" class="behind-section">
+        <div class="behind-container">
+            <h2 class="behind-title">Detrás de la Investigación</h2>
+            <div class="behind-content">
+                <p>Situado en cuatro contextos particulares, la Sierra Tarahumara de Chihuahua, la franja istmeña de Oaxaca, el municipio yucateco de Tecoh y Naucalpan en el Estado de México, se representa una realidad casi invisible: mujeres que no sólo adoptan tecnologías, sino que las reconfiguran desde su experiencia.</p>
+                <p>La energía no sólo enciende un par de focos o un ventilador. Redefine el tiempo, mejora el descanso, ajusta el hogar productivo y revela quién se hace cargo de que todo funcione cuando el cotidiano del hogar es complejo.</p>
+                <blockquote>"No todas se nombran como líderes, pero todas toman decisiones; no todas reclaman un estatus declarado, pero todas ejercen autoridad a su manera."</blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Preguntas Frecuentes -->
+    <section id="faq" class="faq-section">
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+        <div class="faq-container">
+            <details class="faq-item">
+                <summary>¿Qué es Ellas Impactan?</summary>
+                <p>Ellas Impactan es una iniciativa que visibiliza el liderazgo de las mujeres en soluciones energéticas en México.</p>
+            </details>
+            <details class="faq-item">
+                <summary>¿Cómo puedo obtener el reporte completo?</summary>
+                <p>Completa el formulario de contacto y recibirás un enlace para descargar el reporte en tu correo electrónico.</p>
+            </details>
+            <details class="faq-item">
+                <summary>¿En qué regiones se realizó la investigación?</summary>
+                <p>La investigación se desarrolló en Chihuahua, Naucalpan, Oaxaca y Yucatán.</p>
+            </details>
+            <details class="faq-item">
+                <summary>¿Cómo puedo ponerme en contacto con el equipo?</summary>
+                <p>Puedes escribirnos a <a href="mailto:contacto@ellasimpatan.org">contacto@ellasimpatan.org</a> o llenar el formulario en la sección de Reporte.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Sección de Colaboradores -->
+    <section id="colaboradores" class="collaborators-section">
+        <h2 class="section-title" style="text-align:center;">Colaboradores</h2>
+        <div class="collaborators-grid">
+            <!-- Fila 1 -->
+            <div class="collaborator-item">
+                <img src="images/ThumbnailIrrazonables.png" alt="Irrazonables" class="collaborator-logo">
+                <p>Una organización global multi-industria y multi-impacto. Con la obsesión de avanzar a la humanidad… porque el planeta y las personas ya no pueden esperar. Activamos ecosistemas para resolver 8PUs (Pin***s Problemas Urgentes). Para hacerlo a gran escala, detonamos el conocimiento, la tecnología y los negocios para abordar soluciones al tamaño y a la velocidad a la que crecen los retos en Latam. Hoy hemos trabajado con empresas como: Colgate, PepsiCo, Compartamos Banco, Bancolombia Colsubsidio y decenas de Gobiernos. Y beneficiamos +41 millones de personas en 32 países.</p>
+            </div>
+            <div class="collaborator-item">
+                <img src="images/AspenLogo.png" alt="Aspen Institute" class="collaborator-logo">
+                <p>La Red Aspen de Emprendedores para el Desarrollo (ANDE) es una red global de organizaciones que impulsan el emprendimiento en economías en desarrollo. Los miembros de ANDE brindan servicios críticos de apoyo financiero, educativo y empresarial a Pequeñas Empresas en Crecimiento (PEC) con la convicción de que las PEC crean empleos, estimulan el crecimiento económico a largo plazo y producen beneficios ambientales y sociales.</p>
+            </div>
+            <div class="collaborator-item">
+                <img src="images/BitacoraSocial.png" alt="Bitácora Social" class="collaborator-logo">
+                <p>Es una casa de investigación con más de 15 años de experiencia en el desarrollo de información antropológica aplicada. Nos especializamos en construir conocimiento situado que conecta la vida cotidiana con decisiones estratégicas de instituciones, organizaciones sociales y empresas. Trabajamos desde el campo etnográfico y el de vida de la sociedad: acompañamos a las personas, escuchamos sus historias, observamos sus espacios y traducimos lo vivido en claves culturales, operativas y simbólicas que enriquecen la comprensión del entorno.</p>
+            </div>
+            <!-- Fila 2 -->
+            <div class="collaborator-item">
+                <img src="images/KesselLogo.png" alt="Kessel" class="collaborator-logo">
+                <p>Nuestra tecnología de alta calidad garantiza eficiencia, rentabilidad y sostenibilidad para hogares y empresas. Descubre cómo optimizar tu consumo energético con sistemas confiables y garantizados, mientras ahorras significativamente energía, notando una reducción en el consumo de gas y electricidad desde el primer mes, además de ser ecológicos y de contar con sistemas completamente seguros, respaldados por sus materiales de calidad y un servicio de mantenimiento con refacciones garantizadas en México.</p>
+            </div>
+            <div class="collaborator-item">
+                <img src="images/IlumexicoLogo.png" alt="iluméxico" class="collaborator-logo">
+                <p>Somos un servicio de energía eléctrica solar constante y confiable, completamente independiente de la red eléctrica convencional. Estamos comprometidos con la transición energética para vivir mejor. Somos tu mejor opción si eres apagones frecuentes que afectan tu hogar y tu negocio, o usas generadores de combustible que perjudican tu economía.</p>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                <p>© Copyright 2023 - ANDE et al. Aspen Institute</p>
+                <div class="footer-links">
+                    <a href="#">Privacidad y Condiciones</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <!-- Intl-tel-input JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"></script>
-    <!-- AOS - Animate On Scroll -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- GSAP para animaciones avanzadas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
-    <!-- ScrollTrigger para animaciones al hacer scroll -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script>
-    <!-- Script principal -->
     <script src="js/script.js"></script>
-    <script>
-        // Inicializar AOS
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-    </script>
 </body>
 </html>

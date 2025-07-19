@@ -50,7 +50,7 @@ async function createMondayItem(data) {
     try {
         // Preparar los valores de las columnas como un objeto JavaScript
         const columnValues = {
-            phone_mksvcmq9: { phone: data.telefono, countryShortName: "MX" },
+            phone_mksvcmq9: { phone: data.telefono, countryShortName: data.countryCode || "MX" },
             email_mksvakd4: { email: data.email, text: data.email }
         };
 
@@ -79,6 +79,18 @@ async function createMondayItem(data) {
         console.error('Error creating Monday.com item:', error.response ? error.response.data : error);
         throw error;
     }
+}
+
+// Funciones de validación
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function isValidPhone(phone) {
+    // Acepta números, espacios, guiones y paréntesis, entre 7 y 15 dígitos
+    const cleaned = phone.replace(/[^0-9]/g, '');
+    return cleaned.length >= 7 && cleaned.length <= 15;
 }
 
 // Ruta para la página principal
@@ -113,12 +125,24 @@ app.get('/download-pdf', (req, res) => {
 // Ruta para el envío del formulario
 app.post('/api/submit', async (req, res) => {
     try {
-        const { nombre, telefono, email } = req.body;
+        const { nombre, telefono, email, countryCode } = req.body;
+
+        // Validaciones básicas
+        if (!nombre || nombre.trim().length < 2) {
+            return res.status(400).json({ success: false, error: 'Nombre inválido' });
+        }
+        if (!isValidPhone(telefono)) {
+            return res.status(400).json({ success: false, error: 'Teléfono inválido' });
+        }
+        if (!isValidEmail(email)) {
+            return res.status(400).json({ success: false, error: 'Email inválido' });
+        }
+
         console.log('Recibido formulario:', { nombre, telefono, email });
 
         // Crear elemento en Monday.com
         console.log('Creando elemento en Monday.com...');
-        await createMondayItem(req.body);
+        await createMondayItem({ nombre, telefono, email, countryCode });
         console.log('Elemento creado en Monday.com exitosamente');
 
         // Enviar correo al usuario
